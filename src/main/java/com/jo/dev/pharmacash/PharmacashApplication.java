@@ -1,13 +1,13 @@
-package com.jo.dev.pharmacash_backend;
+package com.jo.dev.pharmacash;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PharmacashBackendApplication {
+public class PharmacashApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PharmacashBackendApplication.class, args);
+		SpringApplication.run(PharmacashApplication.class, args);
 	}
 
 }

@@ -1,10 +1,10 @@
-package com.jo.dev.pharmacash_backend;
+package com.jo.dev.pharmacash;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PharmacashBackendApplicationTests {
+class PharmacashApplicationTests {
 
 	@Test
 	void contextLoads() {
