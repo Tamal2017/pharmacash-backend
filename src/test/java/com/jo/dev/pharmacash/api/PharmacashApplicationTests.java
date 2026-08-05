@@ -1,4 +1,4 @@
-package com.jo.dev.pharmacash;
+package com.jo.dev.pharmacash.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
