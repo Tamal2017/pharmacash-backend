@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
@@ -37,6 +38,7 @@ public class SecurityConfig {
         ).csrf(AbstractHttpConfigurer::disable);
 
         http.authorizeHttpRequests(requests -> {
+            requests.requestMatchers("/").permitAll();
             requests.requestMatchers("/me").authenticated();
             requests.anyRequest().denyAll();
         });

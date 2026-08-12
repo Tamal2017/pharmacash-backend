@@ -10,6 +10,18 @@ import java.util.List;
 
 @RestController
 public class UserController {
+    @GetMapping("/")
+    public String welcome() {
+        return """
+                <html>
+                    <body>
+                        <h1>Welcome to the Pharmacash API</h1>
+                        <p>To get your user information, please visit the <a href="/me">/me</a> endpoint.</p>
+                    </body>
+                </html>
+                """;
+    }
+
     @GetMapping("/me")
     public UserInfoDto getGretting(JwtAuthenticationToken auth) {
         return new UserInfoDto(
@@ -17,5 +29,6 @@ public class UserController {
                 auth.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList());
     }
 
-    public record UserInfoDto(String name, List<String> roles) {}
+    public record UserInfoDto(String name, List<String> roles) {
+    }
 }
