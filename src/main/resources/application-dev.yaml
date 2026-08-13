@@ -11,8 +11,6 @@ logging:
 spring:
   application:
     name: pharma-cash-management-service
-  profiles:
-    active: h2
 
   datasource:
     url: jdbc:h2:mem:pharmacash;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL
@@ -32,7 +30,7 @@ spring:
       path: /h2-console
 
   flyway:
-    locations: classpath:db/migration/h2
+    locations: classpath:db/migration/postgres
     baseline-on-migrate: true
 
   security:
@@ -55,3 +53,4 @@ spring:
         provider:
           pharma-cash-keycloak:
             issuer-uri: http://localhost:8080/realms/pharma-cash-keycloak
+
