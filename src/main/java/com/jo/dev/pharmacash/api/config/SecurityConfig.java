@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
@@ -28,8 +29,8 @@ public class SecurityConfig {
 
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requests -> {
-                    requests.requestMatchers("/", "/h2-console/**").permitAll();
-                    requests.requestMatchers("/me").authenticated();
+                    requests.requestMatchers("/api/users/", "/api/users/welcome", "/h2-console/**").permitAll();
+                    requests.requestMatchers("/api/users/*").authenticated();
                     requests.anyRequest().denyAll();
                 })
                 .sessionManagement(sessions ->
@@ -71,7 +72,7 @@ public class SecurityConfig {
             return rolesList.stream()
                     .filter(Objects::nonNull)
                     .map(Object::toString)
-                    .map(GrantedAuthority.class::cast)
+                    .map(name -> (GrantedAuthority) new SimpleGrantedAuthority(name))
                     .toList();
         };
     }

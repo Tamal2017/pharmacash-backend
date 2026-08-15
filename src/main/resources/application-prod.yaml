@@ -3,15 +3,12 @@ server:
 
 logging:
   level:
-    root: info
+    root: debug
     org.springframework: debug
     org.springframework.security: debug
     org.springframework.oauth2: debug
 
 spring:
-  application:
-    name: pharma-cash-management-service
-
   datasource:
     url: jdbc:postgresql://localhost:5432/pharmacash
     driver-class-name: org.postgresql.Driver
@@ -40,12 +37,6 @@ spring:
             provider: pharma-cash-keycloak
             client-id: pharma-cash-keycloak-client-service
             client-secret: "**********"
-            authorization-grant-type: authorization_code
-            scope:
-              - openid
-              - profile
-              - email
         provider:
           pharma-cash-keycloak:
             issuer-uri: http://localhost:8080/realms/pharma-cash-keycloak
-
