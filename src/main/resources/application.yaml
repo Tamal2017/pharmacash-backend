@@ -39,3 +39,5 @@ keycloak:
     realm: pharma-cash-keycloak
     client-id: pharma-cash-admin-client
     client-secret: "mO8AbwQHlSOEaKBfVduoJ6OlH5JW1dfcXQJavHYQXjMhXfmEhuspPdKu20wKleehWSu7QMycX9wZINU4Ko8WxW"
+  user:
+    defaultPassword: "password"

@@ -1,6 +1,6 @@
 package com.jo.dev.pharmacash.api.controller.user;
 
-import com.jo.dev.pharmacash.api.dto.UserDto;
+import com.jo.dev.pharmacash.api.dto.user.UserInfo;
 import com.jo.dev.pharmacash.api.service.user.UserService;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +9,7 @@ import org.springframework.security.oauth2.core.oidc.StandardClaimNames;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,18 +41,24 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    public UserRepresentation getByUsername(@PathVariable("username") String username) {
+    public UserRepresentation getUserByUsername(@PathVariable("username") String username) {
         return userService.getUserByUsername(username);
     }
 
     @GetMapping("/search")
-    public List<UserRepresentation> searchByUserName(@RequestParam("userInfo") String userInfo) {
-        return userService.searchByUserName(userInfo);
+    public List<UserRepresentation> searchUserByUsername(@RequestParam("userInfo") String userInfo) {
+        return userService.searchUserByUsername(userInfo);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Void> createUser(@RequestBody UserDto userDto) {
-        userService.createUser(userDto);
+    public ResponseEntity<Void> createUser(@RequestBody UserInfo userInfo) {
+        userService.createUser(userInfo);
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/update")
+    public ResponseEntity<Void> updateUser(@RequestBody UserInfo userInfo) {
+        userService.updateUser(userInfo);
         return ResponseEntity.ok().build();
     }
 
@@ -61,6 +68,6 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    private record UserInfoDto(String name, List<String> roles) {
+    public record UserInfoDto(String name, List<String> roles) {
     }
 }
